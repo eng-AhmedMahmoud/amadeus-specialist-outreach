@@ -1,42 +1,65 @@
+import Image from "next/image";
 import { ApplicationForm } from "@/components/ApplicationForm";
 
 export default function Home() {
   return (
     <main className="flex-1">
-      <section className="relative overflow-hidden border-b border-neutral-900">
-        <div className="absolute inset-0 grid-bg opacity-60" />
-        <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/30 via-neutral-950/60 to-neutral-950" />
-        <div className="relative mx-auto max-w-5xl px-6 py-24 sm:py-32">
-          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/5 px-3 py-1 text-xs text-cyan-300">
-            <span className="size-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            Hiring now — paid contract
-          </div>
-          <h1 className="mt-6 text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.05]">
-            Amadeus-certified developers,
-            <br />
-            <span className="text-cyan-400">we want to work with you.</span>
+      {/* Header */}
+      <header className="absolute top-0 inset-x-0 z-30">
+        <div className="mx-auto max-w-6xl px-6 py-6 flex items-center justify-between">
+          <a
+            href="https://tajera.com"
+            className="flex items-center gap-2"
+            aria-label="Tajera"
+          >
+            <Image
+              src="/tajera-logo.svg"
+              alt="Tajera"
+              width={120}
+              height={32}
+              priority
+              className="h-7 w-auto"
+            />
+          </a>
+          <a
+            href="#apply"
+            className="text-sm font-medium text-[var(--ink-soft)] hover:text-[var(--brand)] transition"
+          >
+            Apply →
+          </a>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section className="relative isolate overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="blob blob-cool absolute -top-32 -left-24 h-[520px] w-[520px]" />
+          <div className="blob blob-warm absolute top-40 -right-20 h-[420px] w-[420px] opacity-40" />
+        </div>
+
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="eyebrow">Tajera × Amadeus</div>
+          <h1 className="display mt-6 max-w-[18ch] text-[clamp(2.6rem,7vw,6rem)]">
+            We&apos;re hiring <span className="display-italic text-[var(--brand)]">Amadeus-certified</span> developers.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg text-neutral-300">
-            We&apos;re integrating the Amadeus Self-Service catalog — Flight
-            Offers, Pricing, Create Orders, Hotel Search — into a production
-            booking flow. Looking for engineers who have actually shipped
-            Amadeus to prod, not just sandbox demos.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#apply"
-              className="inline-flex items-center justify-center rounded-md bg-cyan-500 hover:bg-cyan-400 px-5 py-3 text-sm font-semibold text-neutral-950 transition"
-            >
-              Apply in 2 minutes →
-            </a>
-            <a
-              href="#scope"
-              className="inline-flex items-center justify-center rounded-md border border-neutral-700 hover:border-neutral-500 px-5 py-3 text-sm font-medium text-neutral-200 transition"
-            >
-              See the scope
-            </a>
+          <div className="mt-10 grid md:grid-cols-12 gap-10 items-end">
+            <p className="md:col-span-6 max-w-xl text-[17px] leading-relaxed text-[var(--ink-soft)]">
+              Tajera is integrating the Amadeus Self-Service catalog — Flight
+              Offers, Pricing, Create Orders, Hotel Search — into a production
+              booking flow. Looking for engineers who have actually shipped
+              Amadeus to prod, not just sandbox demos.
+            </p>
+            <div className="md:col-span-6 md:justify-self-end flex flex-wrap items-center gap-3">
+              <a href="#apply" className="btn btn-primary">
+                Apply in 2 minutes →
+              </a>
+              <a href="#scope" className="btn btn-ghost">
+                See the scope
+              </a>
+            </div>
           </div>
-          <dl className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl">
+
+          <dl className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-8 max-w-3xl">
             <Stat k="Rate" v="$60–$120/hr" />
             <Stat k="Engagement" v="6–12 weeks" />
             <Stat k="Mode" v="Remote, async" />
@@ -45,14 +68,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="scope" className="border-b border-neutral-900">
-        <div className="mx-auto max-w-5xl px-6 py-20">
-          <h2 className="text-3xl font-semibold tracking-tight">The scope</h2>
-          <p className="mt-3 text-neutral-400 max-w-2xl">
-            Concrete deliverables. No vapor. If these endpoints sound boring
-            because you&apos;ve done them ten times — you&apos;re who we want.
+      {/* Scope */}
+      <section
+        id="scope"
+        className="relative bg-[var(--bg-soft)] border-y hairline"
+      >
+        <div className="mx-auto max-w-6xl px-6 py-24">
+          <div className="eyebrow">The scope</div>
+          <h2 className="display mt-4 max-w-2xl text-[clamp(2rem,4.4vw,3.6rem)]">
+            Concrete deliverables. <span className="display-italic text-[var(--brand)]">No vapor.</span>
+          </h2>
+          <p className="mt-4 max-w-2xl text-[var(--ink-soft)]">
+            If these endpoints sound boring because you&apos;ve done them ten
+            times — you&apos;re who Tajera wants.
           </p>
-          <div className="mt-10 grid sm:grid-cols-2 gap-5">
+          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             <ScopeCard
               n="01"
               title="Flight Offers Search v2"
@@ -60,7 +90,7 @@ export default function Home() {
             />
             <ScopeCard
               n="02"
-              title="Flight Offers Pricing → Create Orders v1"
+              title="Pricing → Create Orders v1"
               body="Pricing-confirmation gate before booking. Idempotent Create Orders, PNR persistence, refund-aware error states."
             />
             <ScopeCard
@@ -71,11 +101,11 @@ export default function Home() {
             <ScopeCard
               n="04"
               title="Reliability layer"
-              body="429-aware retry, OAuth refresh, structured error logging. We want to see your retry policy, not invent ours."
+              body="429-aware retry, OAuth refresh, structured error logging. Show us your retry policy, not invent ours."
             />
             <ScopeCard
               n="05"
-              title="Self-Service → Enterprise migration"
+              title="Self-Service → Enterprise"
               body="Sandbox today, prod cert path in motion. Help us move clean — no rebuilds."
             />
             <ScopeCard
@@ -87,13 +117,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-b border-neutral-900">
-        <div className="mx-auto max-w-5xl px-6 py-20 grid md:grid-cols-2 gap-12">
+      {/* Fit */}
+      <section className="border-b hairline">
+        <div className="mx-auto max-w-6xl px-6 py-24 grid md:grid-cols-2 gap-16">
           <div>
-            <h2 className="text-3xl font-semibold tracking-tight">
-              You probably fit if…
+            <div className="eyebrow">The fit</div>
+            <h2 className="display mt-4 text-[clamp(1.8rem,3.6vw,3rem)]">
+              You probably <span className="display-italic text-[var(--brand)]">fit</span> if…
             </h2>
-            <ul className="mt-6 space-y-3 text-neutral-300">
+            <ul className="mt-8 space-y-4 text-[var(--ink-soft)]">
               <Bullet>
                 You&apos;ve shipped Amadeus Self-Service or Enterprise to
                 production — with traffic, not just a sandbox demo
@@ -111,16 +143,17 @@ export default function Home() {
             </ul>
           </div>
           <div>
-            <h2 className="text-3xl font-semibold tracking-tight">
-              You&apos;re not the fit if…
+            <div className="eyebrow">Not the fit</div>
+            <h2 className="display mt-4 text-[clamp(1.8rem,3.6vw,3rem)]">
+              You&apos;re <span className="display-italic text-[var(--brand)]">not</span> the fit if…
             </h2>
-            <ul className="mt-6 space-y-3 text-neutral-300">
+            <ul className="mt-8 space-y-4 text-[var(--ink-soft)]">
               <Bullet kind="x">
                 Sandbox-only experience, or &quot;I worked with a team that did
                 Amadeus&quot;
               </Bullet>
               <Bullet kind="x">
-                You quote $15/hr for &quot;expert&quot; Amadeus work — won&apos;t end well
+                You quote $15/hr for &quot;expert&quot; Amadeus work
               </Bullet>
               <Bullet kind="x">You won&apos;t do a small paid trial task</Bullet>
               <Bullet kind="x">You can&apos;t share any reference clients</Bullet>
@@ -129,12 +162,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-b border-neutral-900">
-        <div className="mx-auto max-w-5xl px-6 py-20">
-          <h2 className="text-3xl font-semibold tracking-tight">
-            What happens next
+      {/* Process */}
+      <section className="bg-[var(--bg-soft)] border-b hairline">
+        <div className="mx-auto max-w-6xl px-6 py-24">
+          <div className="eyebrow">What happens next</div>
+          <h2 className="display mt-4 max-w-2xl text-[clamp(2rem,4.4vw,3.6rem)]">
+            Four steps. <span className="display-italic text-[var(--brand)]">No theatre.</span>
           </h2>
-          <ol className="mt-10 grid sm:grid-cols-4 gap-6">
+          <ol className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             <Step
               n="1"
               title="Apply"
@@ -148,7 +183,7 @@ export default function Home() {
             <Step
               n="3"
               title="Paid trial"
-              body="4–6 hrs on a real (small) ticket. Paid at your rate, no strings."
+              body="4–6 hrs on a real (small) ticket. Paid at your rate."
             />
             <Step
               n="4"
@@ -159,21 +194,37 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="apply" className="border-b border-neutral-900">
-        <div className="mx-auto max-w-3xl px-6 py-20">
-          <h2 className="text-3xl font-semibold tracking-tight">Apply</h2>
-          <p className="mt-3 text-neutral-400">
-            Honesty over polish. Specifics over buzzwords. We screen on
+      {/* Apply */}
+      <section id="apply" className="border-b hairline">
+        <div className="mx-auto max-w-3xl px-6 py-24">
+          <div className="eyebrow">Apply</div>
+          <h2 className="display mt-4 text-[clamp(2rem,4.4vw,3.6rem)]">
+            Tell us what you&apos;ve <span className="display-italic text-[var(--brand)]">shipped</span>.
+          </h2>
+          <p className="mt-4 text-[var(--ink-soft)]">
+            Honesty over polish. Specifics over buzzwords. Tajera screens on
             shipped-to-prod evidence.
           </p>
-          <div className="mt-10">
+          <div className="mt-12">
             <ApplicationForm />
           </div>
         </div>
       </section>
 
-      <footer className="py-10 text-center text-xs text-neutral-500">
-        Independent hiring page. Not affiliated with Amadeus IT Group.
+      <footer className="py-12">
+        <div className="mx-auto max-w-6xl px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--mute)]">
+          <div className="flex items-center gap-3">
+            <Image
+              src="/tajera-logo.svg"
+              alt="Tajera"
+              width={80}
+              height={20}
+              className="h-5 w-auto opacity-60"
+            />
+            <span>© Tajera</span>
+          </div>
+          <span>Independent hiring page. Not affiliated with Amadeus IT Group.</span>
+        </div>
       </footer>
     </main>
   );
@@ -182,8 +233,8 @@ export default function Home() {
 function Stat({ k, v }: { k: string; v: string }) {
   return (
     <div>
-      <dt className="text-xs uppercase tracking-wider text-neutral-500">{k}</dt>
-      <dd className="mt-1 text-base font-medium text-neutral-100">{v}</dd>
+      <dt className="eyebrow">{k}</dt>
+      <dd className="mt-2 display text-2xl">{v}</dd>
     </div>
   );
 }
@@ -198,10 +249,10 @@ function ScopeCard({
   body: string;
 }) {
   return (
-    <div className="rounded-xl border border-neutral-800 bg-neutral-900/40 p-6 hover:border-neutral-700 transition">
-      <div className="text-xs font-mono text-cyan-400">{n}</div>
-      <div className="mt-2 text-lg font-semibold">{title}</div>
-      <p className="mt-2 text-sm text-neutral-400 leading-relaxed">{body}</p>
+    <div className="surface-card p-7 hover:-translate-y-0.5 transition">
+      <div className="text-xs font-mono text-[var(--brand)]">{n}</div>
+      <div className="display mt-3 text-xl">{title}</div>
+      <p className="mt-3 text-sm text-[var(--ink-soft)] leading-relaxed">{body}</p>
     </div>
   );
 }
@@ -218,8 +269,8 @@ function Bullet({
       <span
         className={`mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
           kind === "check"
-            ? "bg-emerald-500/15 text-emerald-400"
-            : "bg-red-500/15 text-red-400"
+            ? "bg-[var(--brand-soft)] text-[var(--brand)]"
+            : "bg-red-100 text-red-600"
         }`}
       >
         {kind === "check" ? "✓" : "×"}
@@ -239,10 +290,10 @@ function Step({
   body: string;
 }) {
   return (
-    <li className="rounded-xl border border-neutral-800 bg-neutral-900/40 p-5">
-      <div className="text-xs font-mono text-cyan-400">Step {n}</div>
-      <div className="mt-2 font-semibold">{title}</div>
-      <p className="mt-1 text-sm text-neutral-400">{body}</p>
+    <li className="surface-card p-6">
+      <div className="text-xs font-mono text-[var(--brand)]">Step {n}</div>
+      <div className="display mt-2 text-lg">{title}</div>
+      <p className="mt-2 text-sm text-[var(--ink-soft)]">{body}</p>
     </li>
   );
 }

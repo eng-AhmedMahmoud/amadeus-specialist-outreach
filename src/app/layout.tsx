@@ -1,28 +1,42 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const serif = Instrument_Serif({
   subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Hiring Amadeus-certified developers — paid contract work",
+  applicationName: "Tajera",
+  title: "Tajera — Hiring Amadeus-certified developers",
   description:
-    "We're hiring certified Amadeus Self-Service and Enterprise developers to integrate Flight, Hotel and Booking APIs into our production platform. Remote, paid, async.",
+    "Tajera is hiring certified Amadeus Self-Service and Enterprise developers to integrate Flight, Hotel and Booking APIs into our production platform. Remote, paid, async.",
+  icons: { icon: "/tajera-logo.svg" },
   openGraph: {
-    title: "Hiring Amadeus-certified developers",
+    title: "Tajera — Hiring Amadeus-certified developers",
     description:
       "Paid contract — Amadeus Self-Service + Enterprise API integration. Remote, async, $60–$120/hr.",
     type: "website",
   },
   robots: { index: true, follow: true },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#060b1a" },
+  ],
 };
 
 export default function RootLayout({
@@ -33,11 +47,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${serif.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-neutral-950 text-neutral-100">
-        {children}
-      </body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }
